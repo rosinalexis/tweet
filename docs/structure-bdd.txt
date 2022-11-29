@@ -1,0 +1,27 @@
+users
+    id  PRIMARY INT => sera un auto-incrément
+    email     VARCHAR 255 NOT NULL
+    username  VARCHAR 30 NOT NULL
+    password  VARCHAR 255 NOT NULL
+    bio       TEXT NULL
+    date_created     DATETIME NOT NULL
+    date_updated     DATETIME NULL
+
+tweets
+    id   PRIMARY INT => sera un auto-incrément
+    author_id   INT NOT NULL
+    message   VARCHAR 255 NOT NULL
+    likes_quantity   INT DEFAULT 0 => un regle c'est ne pas dupliquer l'info sur un modele relationnel.
+										mais dans la vraie vie, on va le laisser pour des raisons de performance
+    date_created   DATETIME NOT NULL
+
+FK entre author_id et la colonne id de users
+
+=> si on veut garder l'historique des tweets, on aura une table d'intersection, pour avoir le nombre de like, 
+ou savoir quel utilisateur tweete le plus, (entre telle date et telle date) 
+likes
+    id  => ce que preconisera Symfony
+    tweet_id
+    user_id
+    date
+
